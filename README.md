@@ -4,11 +4,13 @@
   - react
   - react-dom
   - react-addons-pure-render-mixin
+  - react-mounter
 - Meteor
   - react-meteor-data
-  - accounts-password + accounts-ui (then wrapping in React)
+  - [std:react-accounts-ui](https://github.com/studiointeract/react-accounts-ui)
+  - flow-router
 - Styling
-  - material-ui
+  - [material-ui](http://www.material-ui.com/#/components/app-bar)
   - react-tap-event-plugin
   - ```@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);```
 

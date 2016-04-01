@@ -5,11 +5,13 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "lodash": "^4.7.0",
     "material-ui": "^0.15.0-alpha.2",
     "meteor-node-stubs": "~0.2.0",
     "react": "^0.14.8",
     "react-addons-pure-render-mixin": "^0.14.8",
     "react-dom": "^0.14.8",
+    "react-mounter": "^1.1.0",
     "react-tap-event-plugin": "^0.2.2"
   }
 }
