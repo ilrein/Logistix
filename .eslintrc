@@ -9,6 +9,7 @@
     "rules": {
       "no-undef": 0,
       "no-console": 0,
-      "no-unused-vars": 0
+      "no-unused-vars": 1,
+      "react/prefer-stateless-function": 0
     }
 }

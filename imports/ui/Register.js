@@ -1,4 +1,5 @@
-import Meteor from 'meteor/meteor';
+// import Meteor from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
 import React, { Component } from 'react';
 import TextField from 'material-ui/lib/text-field';
 import RaisedButton from 'material-ui/lib/raised-button';
@@ -37,7 +38,14 @@ export default class Register extends Component {
 
     if (password === passwordConfirmation) {
       console.log('both match');
-      // Meteor
+      Accounts.createUser({
+        email: emailAddress,
+        password,
+      }, () => {
+        console.log('User created successfully!');
+        // Meteor.loginWithPassword(emailAddress, password, () => {});
+        FlowRouter.go('/dashboard');
+      });
     } else {
       console.log('they dont match');
     }
@@ -52,7 +60,7 @@ export default class Register extends Component {
   render() {
     return (
       <form
-        className="login-form"
+        className="register-form"
       >
         <div
           style={style.container}

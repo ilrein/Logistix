@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount } from 'react-mounter';
+import { Tracker } from 'meteor/tracker';
 
 import MainLayout from '../imports/layouts/MainLayout';
 import Login from '../imports/ui/Login';
@@ -13,23 +14,29 @@ injectTapEventPlugin();
 FlowRouter.route('/', {
   action() {
     mount(MainLayout, {
-      content: (<Login />)
+      content: (<Login />),
     });
-  }
+  },
 });
 
 FlowRouter.route('/register', {
   action() {
     mount(MainLayout, {
-      content: (<Register />)
+      content: (<Register />),
     });
-  }
+  },
 });
 
 FlowRouter.route('/dashboard', {
   action() {
     mount(MainLayout, {
-      content: (<div>Dashboard</div>)
+      content: (<div>Dashboard</div>),
     });
+  },
+});
+
+Tracker.autorun(() => {
+  if (!Meteor.userId()) {
+    FlowRouter.go('/');
   }
 });

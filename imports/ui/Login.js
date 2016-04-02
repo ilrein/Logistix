@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor'
 import React, { Component } from 'react';
 import TextField from 'material-ui/lib/text-field';
 import RaisedButton from 'material-ui/lib/raised-button';
@@ -28,14 +29,16 @@ export default class Login extends Component {
     this.clickRegister = this.clickRegister.bind(this);
   }
 
-  clickLogin(event) {
-    event.preventDefault();
-    console.log('Clicked login');
+  clickLogin() {
+    const emailAddress = this.refs.emailAddress.getValue();
+    const password = this.refs.password.getValue();
+
+    Meteor.loginWithPassword(emailAddress, password, () => {
+      FlowRouter.go('/dashboard');
+    });
   }
 
-  clickRegister(event) {
-    event.preventDefault();
-    console.log('Clicked register');
+  clickRegister() {
     FlowRouter.go('/register');
   }
 
@@ -49,13 +52,15 @@ export default class Login extends Component {
         >
           <TextField
             hintText="Email address"
+            ref="emailAddress"
             style={style.field}
           />
           <br />
           <TextField
             hintText="Password"
-            type="password"
+            ref="password"
             style={style.field}
+            type="password"
           />
           <br />
           <div>
