@@ -1,4 +1,4 @@
-import { Meteor } from 'meteor/meteor'
+import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import TextField from 'material-ui/lib/text-field';
 import RaisedButton from 'material-ui/lib/raised-button';
@@ -34,7 +34,10 @@ export default class Login extends Component {
     const password = this.refs.password.getValue();
 
     Meteor.loginWithPassword(emailAddress, password, () => {
-      FlowRouter.go('/dashboard');
+      // if the login is successful...
+      if (Meteor.userId()) {
+        FlowRouter.go('/dashboard');
+      }
     });
   }
 
