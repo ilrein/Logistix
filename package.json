@@ -13,5 +13,10 @@
     "react-dom": "^0.14.8",
     "react-mounter": "^1.1.0",
     "react-tap-event-plugin": "^0.2.2"
+  },
+  "devDependencies": {
+    "eslint": "^2.6.0",
+    "eslint-config-airbnb": "^6.2.0",
+    "eslint-plugin-react": "^4.2.3"
   }
 }

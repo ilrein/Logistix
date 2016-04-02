@@ -1,3 +1,4 @@
+import Meteor from 'meteor/meteor';
 import React, { Component } from 'react';
 import TextField from 'material-ui/lib/text-field';
 import RaisedButton from 'material-ui/lib/raised-button';
@@ -20,23 +21,32 @@ const style = {
   },
 };
 
-export default class Login extends Component {
+export default class Register extends Component {
   constructor(props) {
     super(props);
 
-    this.clickLogin = this.clickLogin.bind(this);
-    this.clickRegister = this.clickRegister.bind(this);
+    this.clickSignUp = this.clickSignUp.bind(this);
+    this.clickBack = this.clickBack.bind(this);
   }
 
-  clickLogin(event) {
+  clickSignUp(event) {
     event.preventDefault();
-    console.log('Clicked login');
+    const emailAddress = this.refs.emailAddress.getValue();
+    const password = this.refs.password.getValue();
+    const passwordConfirmation = this.refs.passwordConfirmation.getValue();
+
+    if (password === passwordConfirmation) {
+      console.log('both match');
+      // Meteor
+    } else {
+      console.log('they dont match');
+    }
   }
 
-  clickRegister(event) {
+  clickBack(event) {
     event.preventDefault();
-    console.log('Clicked register');
-    FlowRouter.go('/register');
+    console.log('Clicked back');
+    FlowRouter.go('/');
   }
 
   render() {
@@ -49,27 +59,36 @@ export default class Login extends Component {
         >
           <TextField
             hintText="Email address"
+            ref="emailAddress"
             style={style.field}
+            type="email"
           />
           <br />
           <TextField
             hintText="Password"
             type="password"
+            ref="password"
+            style={style.field}
+          />
+          <br />
+          <TextField
+            hintText="Confirm Password"
+            type="password"
+            ref="passwordConfirmation"
             style={style.field}
           />
           <br />
           <div>
             <RaisedButton
-              label="Login"
-              secondary
-              style={style.button}
-              onClick={this.clickLogin}
-            />
-            <RaisedButton
-              label="Register"
+              label="Sign up"
               primary
               style={style.button}
-              onClick={this.clickRegister}
+              onClick={this.clickSignUp}
+            />
+            <RaisedButton
+              label="Back"
+              style={style.button}
+              onClick={this.clickBack}
             />
           </div>
         </div>

@@ -3,6 +3,7 @@ import { mount } from 'react-mounter';
 
 import MainLayout from '../imports/layouts/MainLayout';
 import Login from '../imports/ui/Login';
+import Register from '../imports/ui/Register';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 // Needed for onTouchTap
@@ -13,6 +14,14 @@ FlowRouter.route('/', {
   action() {
     mount(MainLayout, {
       content: (<Login />)
+    });
+  }
+});
+
+FlowRouter.route('/register', {
+  action() {
+    mount(MainLayout, {
+      content: (<Register />)
     });
   }
 });
