@@ -4,7 +4,6 @@ import MenuItem from 'material-ui/lib/menus/menu-item';
 import RaisedButton from 'material-ui/lib/raised-button';
 
 export default class LeftNavBar extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = { open: false };
