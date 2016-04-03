@@ -1,13 +1,17 @@
 import React from 'react';
+import Card from 'material-ui/lib/card/card';
+import CardHeader from 'material-ui/lib/card/card-header';
 
-class Dashboard extends React.Component {
-  render() {
-    return (
-      <div>
-        Dashboard
-      </div>
-    );
-  }
-}
+import Map from './Map';
 
-export default Dashboard;
+const MapsCard = () => (
+  <Card>
+    <CardHeader
+      title="A Great Title"
+      subtitle="A Better Subtitle"
+    />
+    <Map />
+  </Card>
+);
+
+export default MapsCard;
