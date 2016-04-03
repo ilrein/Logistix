@@ -1,6 +1,10 @@
 import React from 'react';
 import { Gmaps, Marker, InfoWindow, Circle } from 'react-gmaps';
 
+// Goals for this:
+// - get the location of the user dynamically
+// - see other users as markers
+
 const coords = {
   lat: 51.5258541,
   lng: -0.08040660000006028,
@@ -13,6 +17,27 @@ export default class App extends React.Component {
     });
   }
 
+  // The docs are bad, here are all the options:
+  // bounds_changed
+  // center_changed
+  // click
+  // dblclick
+  // drag
+  // dragend
+  // dragstart
+  // heading_changed
+  // idle
+  // maptypeid_changed
+  // mousemove
+  // mouseout
+  // mouseover
+  // projection_changed
+  // resize
+  // rightclick
+  // tilesloaded
+  // tilt_changed
+  // zoom_changed
+
   onDragEnd(e) {
     console.log('onDragEnd', e);
   }
@@ -23,6 +48,10 @@ export default class App extends React.Component {
 
   onClick(e) {
     console.log('onClick', e);
+  }
+
+  onDragStart(e) {
+    console.log('onDragStart', e);
   }
 
   render() {
@@ -41,7 +70,7 @@ export default class App extends React.Component {
           lat={coords.lat}
           lng={coords.lng}
           draggable
-          onDragEnd={this.onDragEnd}
+          onDragStart={this.onDragStart}
         />
         <InfoWindow
           lat={coords.lat}
