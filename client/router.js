@@ -7,15 +7,22 @@ import { Tracker } from 'meteor/tracker';
 import MainLayout from '../imports/layouts/MainLayout';
 import AppLayout from '../imports/layouts/AppLayout';
 
-// Components
+// Stateless Components
 import Login from '../imports/ui/Login';
 import Register from '../imports/ui/Register';
 import Dashboard from '../imports/ui/Dashboard';
 
-import injectTapEventPlugin from 'react-tap-event-plugin';
+// Containers
+import UsersCountContainer from '../imports/containers/UsersCountContainer';
+
 // Needed for onTouchTap
-// Can go away when react 1.0 release
+// Can remove when React 1.0 is released
+import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
+
+//-------
+// Routes
+//-------
 
 // Home route
 FlowRouter.route('/', {
@@ -40,6 +47,15 @@ FlowRouter.route('/dashboard', {
   action() {
     mount(AppLayout, {
       content: (<Dashboard />),
+    });
+  },
+});
+
+// testing page for debugging components
+FlowRouter.route('/test', {
+  action() {
+    mount(AppLayout, {
+      content: (<UsersCountContainer />),
     });
   },
 });

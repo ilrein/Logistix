@@ -1,3 +1,4 @@
+// import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { Gmaps, Marker, InfoWindow, Circle } from 'react-gmaps';
 
@@ -11,6 +12,22 @@ const coords = {
 };
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      v: '3.exp',
+      key: null,
+    };
+
+    // Meteor.call('googleMapsApiKey', (err, res) => {
+    //   if (!err) {
+    //     this.setState({ key: res });
+    //     console.log('we should have setstate by now', this.getState());
+    //   }
+    // });
+  }
+
   onMapCreated(map) {
     map.setOptions({
       disableDefaultUI: true,
@@ -63,8 +80,9 @@ export default class App extends React.Component {
         lng={coords.lng}
         zoom={12}
         loadingMessage={'Be happy'}
-        params={{ v: '3.exp' }}
+        params={this.state}
         onMapCreated={this.onMapCreated}
+        style={{ width: '100%' }}
       >
         <Marker
           lat={coords.lat}

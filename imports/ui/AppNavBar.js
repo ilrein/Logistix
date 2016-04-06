@@ -50,6 +50,7 @@ class AppNavBar extends React.Component {
           <MenuItem
             onTouchTap={this.handleClose}
             style={style.menuItem}
+            disabled
           >
             Menu Item
           </MenuItem>

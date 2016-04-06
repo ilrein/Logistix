@@ -13,6 +13,7 @@
     "react-addons-pure-render-mixin": "^0.14.8",
     "react-dom": "^0.14.8",
     "react-gmaps": "^1.4.4",
+    "react-komposer": "^1.7.1",
     "react-mounter": "^1.1.0",
     "react-tap-event-plugin": "^0.2.2"
   },

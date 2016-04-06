@@ -1,5 +1,4 @@
 import React from 'react';
-
 import AppNavBar from '../ui/AppNavBar';
 
 const AppLayout = ({ content }) => (
