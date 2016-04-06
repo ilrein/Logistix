@@ -1,6 +1,7 @@
 // import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { Gmaps, Marker, InfoWindow, Circle } from 'react-gmaps';
+// import { ReactiveVar } from 'meteor/reactive-var';
 
 // Goals for this:
 // - get the location of the user dynamically
@@ -11,6 +12,9 @@ const coords = {
   lng: -0.08040660000006028,
 };
 
+// const key = new ReactiveVar(null);
+//
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -20,12 +24,11 @@ export default class App extends React.Component {
       key: null,
     };
 
-    // Meteor.call('googleMapsApiKey', (err, res) => {
-    //   if (!err) {
-    //     this.setState({ key: res });
-    //     console.log('we should have setstate by now', this.getState());
-    //   }
-    // });
+    Meteor.call('googleMapsApiKey', (err, res) => {
+      if (!err) {
+        this.setState({ key: res });
+      }
+    });
   }
 
   onMapCreated(map) {
@@ -71,38 +74,43 @@ export default class App extends React.Component {
     console.log('onDragStart', e);
   }
 
-  render() {
-    return (
-      <Gmaps
-        width={'800px'}
-        height={'600px'}
-        lat={coords.lat}
-        lng={coords.lng}
-        zoom={12}
-        loadingMessage={'Be happy'}
-        params={this.state}
-        onMapCreated={this.onMapCreated}
-        style={{ width: '100%' }}
-      >
-        <Marker
+  render() { // eslint-disable-line
+    if (this.state.key) {
+      // console.log('how many times is this rendered');
+      return (
+        <Gmaps
+          width={'800px'}
+          height={'600px'}
           lat={coords.lat}
           lng={coords.lng}
-          draggable
-          onDragStart={this.onDragStart}
-        />
-        <InfoWindow
-          lat={coords.lat}
-          lng={coords.lng}
-          content={'Hello, React :)'}
-          onCloseClick={this.onCloseClick}
-        />
-        <Circle
-          lat={coords.lat}
-          lng={coords.lng}
-          radius={500}
-          onClick={this.onClick}
-        />
-      </Gmaps>
-    );
+          zoom={12}
+          loadingMessage={'Be happy'}
+          params={this.state}
+          onMapCreated={this.onMapCreated}
+          style={{ width: '100%' }}
+        >
+          <Marker
+            lat={coords.lat}
+            lng={coords.lng}
+            draggable
+            onDragStart={this.onDragStart}
+          />
+          <InfoWindow
+            lat={coords.lat}
+            lng={coords.lng}
+            content={'Hello, React :)'}
+            onCloseClick={this.onCloseClick}
+          />
+          <Circle
+            lat={coords.lat}
+            lng={coords.lng}
+            radius={500}
+            onClick={this.onClick}
+          />
+        </Gmaps>
+      );
+    } else { // eslint-disable-line
+      return <div>Loading</div>;
+    }
   }
 }

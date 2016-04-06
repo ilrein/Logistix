@@ -55,7 +55,9 @@ FlowRouter.route('/dashboard', {
 FlowRouter.route('/test', {
   action() {
     mount(AppLayout, {
-      content: (<UsersCountContainer />),
+      content: (
+        <UsersCountContainer />
+      ),
     });
   },
 });

@@ -9,7 +9,7 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log(UsersCountContainer);
+    // console.log(UsersCountContainer);
   }
 
   render() {

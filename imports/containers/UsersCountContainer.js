@@ -4,8 +4,9 @@ import UsersCount from '../ui/UsersCount';
 function composer(props, onData) {
   const handle = Meteor.subscribe('userStatus');
   if (handle.ready()) {
-    const users = Meteor.users.find({}).count();
-    onData(null, { users });
+    const totalUsers = Meteor.users.find({}).count();
+    console.log(totalUsers);
+    onData(null, { totalUsers });
   }
 }
 

@@ -1,8 +1,9 @@
 import React from 'react';
 
-const UsersCount = ({ userCount }) => ( // eslint-disable-line
-  <div>{userCount}</div>
-);
+const UsersCount = ({ totalUsers }) => { // eslint-disable-line
+  console.log({ totalUsers });
+  return <div>{totalUsers}</div>;
+};
 
 // UsersCount.propTypes = {
 //   userCount: React.PropTypes.number.isRequired,
