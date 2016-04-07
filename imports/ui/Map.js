@@ -1,43 +1,56 @@
-// import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { Gmaps, Marker, InfoWindow, Circle } from 'react-gmaps';
-// import { ReactiveVar } from 'meteor/reactive-var';
 
 // Goals for this:
 // - get the location of the user dynamically
 // - see other users as markers
 
-const coords = {
-  lat: 51.5258541,
-  lng: -0.08040660000006028,
-};
-
-// const key = new ReactiveVar(null);
-//
-
-export default class App extends React.Component {
+export default class Map extends React.Component {
   constructor(props) {
     super(props);
 
+    this.onMapCreated = this.onMapCreated.bind(this);
+
     this.state = {
-      v: '3.exp',
-      key: null,
+      credentials: {
+        v: '3.exp',
+        key: null,
+      },
+      coordinates: {
+        lat: 51.5258541,
+        lng: -0.08040660000006028,
+      },
     };
 
     Meteor.call('googleMapsApiKey', (err, res) => {
       if (!err) {
-        this.setState({ key: res });
+        this.setState({ credentials: { key: res } });
       }
     });
   }
 
   onMapCreated(map) {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position);
+        this.setState({
+          coordinates: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          },
+        });
+        console.log(this.state);
+      });
+    } else {
+      console.log('geolocation not supported');
+    }
+
     map.setOptions({
       disableDefaultUI: true,
     });
   }
 
-  // The docs are bad, here are all the options:
+  // The docs are bad, here are all the events:
   // bounds_changed
   // center_changed
   // click
@@ -75,35 +88,34 @@ export default class App extends React.Component {
   }
 
   render() { // eslint-disable-line
-    if (this.state.key) {
-      // console.log('how many times is this rendered');
+    if (this.state.credentials.key) {
       return (
         <Gmaps
           width={'800px'}
           height={'600px'}
-          lat={coords.lat}
-          lng={coords.lng}
+          lat={this.state.coordinates.lat}
+          lng={this.state.coordinates.lng}
           zoom={12}
-          loadingMessage={'Be happy'}
-          params={this.state}
+          loadingMessage={''}
+          params={this.state.credentials}
           onMapCreated={this.onMapCreated}
           style={{ width: '100%' }}
         >
           <Marker
-            lat={coords.lat}
-            lng={coords.lng}
+            lat={this.state.coordinates.lat}
+            lng={this.state.coordinates.lng}
             draggable
             onDragStart={this.onDragStart}
           />
           <InfoWindow
-            lat={coords.lat}
-            lng={coords.lng}
+            lat={this.state.coordinates.lat}
+            lng={this.state.coordinates.lng}
             content={'Hello, React :)'}
             onCloseClick={this.onCloseClick}
           />
           <Circle
-            lat={coords.lat}
-            lng={coords.lng}
+            lat={this.state.coordinates.lat}
+            lng={this.state.coordinates.lng}
             radius={500}
             onClick={this.onClick}
           />

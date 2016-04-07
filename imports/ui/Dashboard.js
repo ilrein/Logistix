@@ -8,16 +8,15 @@ import UsersCountContainer from '../containers/UsersCountContainer';
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-
-    // console.log(UsersCountContainer);
+    this.state = {};
   }
 
   render() {
     return (
       <Card>
         <CardHeader
-          title="A Great Title"
-          subtitle="A Better Subtitle"
+          title="Total Users Online"
+          children={<UsersCountContainer />}
         />
         <Map />
       </Card>
