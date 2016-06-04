@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import AppBar from 'material-ui/AppBar/AppBar';
-import LeftNav from 'material-ui/Drawer/Drawer';
+import Drawer from 'material-ui/Drawer/Drawer';
 import MenuItem from 'material-ui/MenuItem/MenuItem';
 
 const style = {
@@ -21,6 +21,7 @@ class AppNavBar extends React.Component {
   }
 
   handleToggle() {
+    console.log('handling toggle');
     this.setState({ open: !this.state.open });
   }
 
@@ -41,7 +42,7 @@ class AppNavBar extends React.Component {
           style={{ textAlign: 'center' }}
           onLeftIconButtonTouchTap={this.handleToggle}
         />
-        <LeftNav
+        <Drawer
           docked={false}
           width={200}
           open={this.state.open}
@@ -60,7 +61,7 @@ class AppNavBar extends React.Component {
           >
             Logout
           </MenuItem>
-        </LeftNav>
+        </Drawer>
       </div>
     );
   }

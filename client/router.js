@@ -12,8 +12,8 @@ import Login from '../imports/ui/Login';
 import Register from '../imports/ui/Register';
 import Dashboard from '../imports/ui/Dashboard';
 
-// Containers
-import UsersCountContainer from '../imports/containers/UsersCountContainer';
+// Test Page
+import TestPage from '../imports/ui/TestPage';
 
 // Needed for onTouchTap
 // Can remove when React 1.0 is released
@@ -56,7 +56,7 @@ FlowRouter.route('/test', {
   action() {
     mount(AppLayout, {
       content: (
-        <UsersCountContainer />
+        <TestPage />
       ),
     });
   },

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Gmaps, Marker } from 'react-gmaps';
 
+import LoadingSpinner from './LoadingSpinner';
+
 // Goals for this:
 // - get the location of the user dynamically
 // - see other users as markers
@@ -109,7 +111,7 @@ export default class Map extends React.Component {
         </Gmaps>
       );
     } else { // eslint-disable-line
-      return <div>Loading</div>;
+      return <div>loading</div>;
     }
   }
 }
