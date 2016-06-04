@@ -4,6 +4,7 @@ import CardHeader from 'material-ui/lib/card/card-header';
 
 import Map from './Map';
 import UsersCountContainer from '../containers/UsersCountContainer';
+import JobsCountContainer from '../containers/JobsCountContainer';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -13,13 +14,19 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <Card>
-        <CardHeader
-          title="Total Users Online"
-          children={<UsersCountContainer />}
-        />
-        <Map />
-      </Card>
+      <div>
+        <Card>
+          <CardHeader
+            title="Total Users Online"
+            children={<UsersCountContainer />}
+          />
+          <CardHeader
+            title="Total Jobs"
+            children={<JobsCountContainer />}
+          />
+          <Map />
+        </Card>
+      </div>
     );
   }
 }

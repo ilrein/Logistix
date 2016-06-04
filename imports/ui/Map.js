@@ -1,5 +1,5 @@
 import React from 'react';
-import { Gmaps, Marker, InfoWindow, Circle } from 'react-gmaps';
+import { Gmaps, Marker } from 'react-gmaps';
 
 // Goals for this:
 // - get the location of the user dynamically
@@ -9,48 +9,47 @@ export default class Map extends React.Component {
   constructor(props) {
     super(props);
 
-    this.onMapCreated = this.onMapCreated.bind(this);
-
     this.state = {
       credentials: {
         v: '3.exp',
         key: null,
       },
       coordinates: {
-        lat: 51.5258541,
-        lng: -0.08040660000006028,
+        lat: null,
+        lng: null,
       },
     };
 
     Meteor.call('googleMapsApiKey', (err, res) => {
       if (!err) {
+        // grab the API key
         this.setState({ credentials: { key: res } });
+
+        // grab the user's GPS coordinates
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition((position) => {
+            this.setState({
+              coordinates: {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              },
+            });
+          });
+        } else {
+          console.log('geolocation not supported');
+        }
       }
     });
   }
 
   onMapCreated(map) {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position);
-        this.setState({
-          coordinates: {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          },
-        });
-        console.log(this.state);
-      });
-    } else {
-      console.log('geolocation not supported');
-    }
-
     map.setOptions({
       disableDefaultUI: true,
     });
   }
 
   // The docs are bad, here are all the events:
+  // ------------------------------------------
   // bounds_changed
   // center_changed
   // click
@@ -88,7 +87,7 @@ export default class Map extends React.Component {
   }
 
   render() { // eslint-disable-line
-    if (this.state.credentials.key) {
+    if (this.state.credentials.key && this.state.coordinates.lat) {
       return (
         <Gmaps
           width={'800px'}
@@ -106,18 +105,6 @@ export default class Map extends React.Component {
             lng={this.state.coordinates.lng}
             draggable
             onDragStart={this.onDragStart}
-          />
-          <InfoWindow
-            lat={this.state.coordinates.lat}
-            lng={this.state.coordinates.lng}
-            content={'Hello, React :)'}
-            onCloseClick={this.onCloseClick}
-          />
-          <Circle
-            lat={this.state.coordinates.lat}
-            lng={this.state.coordinates.lng}
-            radius={500}
-            onClick={this.onClick}
           />
         </Gmaps>
       );

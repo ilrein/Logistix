@@ -20,3 +20,6 @@
   - register as courier or customer
 - Google Map dashboard
     - click location to schedule pickup
+
+- Create @Job(startPoint, endPoint, startTime, load)
+  - 

@@ -52,7 +52,7 @@ class AppNavBar extends React.Component {
             style={style.menuItem}
             disabled
           >
-            Menu Item
+            Logistix
           </MenuItem>
           <MenuItem
             onTouchTap={this.handleLogout}
