@@ -1,8 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
-import AppBar from 'material-ui/lib/app-bar';
-import LeftNav from 'material-ui/lib/left-nav';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import AppBar from 'material-ui/AppBar/AppBar';
+import LeftNav from 'material-ui/Drawer/Drawer';
+import MenuItem from 'material-ui/MenuItem/MenuItem';
 
 const style = {
   menuItem: {

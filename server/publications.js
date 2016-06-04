@@ -5,8 +5,8 @@ Meteor.publish('userStatus', function() {
 });
 
 // Jobs
-import Jobs from '/lib/collections/JobsCollection';
+import Contracts from '/lib/collections/ContractCollection';
 
-Meteor.publish('jobs', function() {
-  return Jobs.find({});
+Meteor.publish('contracts', function() {
+  return Contracts.find({});
 });

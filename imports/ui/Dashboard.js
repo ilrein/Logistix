@@ -1,10 +1,10 @@
 import React from 'react';
-import Card from 'material-ui/lib/card/card';
-import CardHeader from 'material-ui/lib/card/card-header';
+import Card from 'material-ui/Card/Card';
+import CardHeader from 'material-ui/Card/CardHeader';
 
 import Map from './Map';
 import UsersCountContainer from '../containers/UsersCountContainer';
-import JobsCountContainer from '../containers/JobsCountContainer';
+import ContractsCountContainer from '../containers/ContractsCountContainer';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class Dashboard extends React.Component {
           />
           <CardHeader
             title="Total Jobs"
-            children={<JobsCountContainer />}
+            children={<ContractsCountContainer />}
           />
           <Map />
         </Card>

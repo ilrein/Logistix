@@ -1,14 +1,18 @@
 import React from 'react';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import NavBar from '../ui/NavBar';
 
 const MainLayout = ({ content }) => (
-  <div>
-    <NavBar />
-    <main>
-      {content}
-    </main>
-  </div>
+  <MuiThemeProvider muiTheme={getMuiTheme()}>
+    <div>
+      <NavBar />
+      <main>
+        {content}
+      </main>
+    </div>
+  </MuiThemeProvider>
 );
 
 MainLayout.propTypes = {

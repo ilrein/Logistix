@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
-import TextField from 'material-ui/lib/text-field';
-import RaisedButton from 'material-ui/lib/raised-button';
+import TextField from 'material-ui/TextField/TextField';
+import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
 
 const style = {
   container: {

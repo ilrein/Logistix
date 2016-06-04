@@ -6,16 +6,16 @@
   },
   "dependencies": {
     "lodash": "^4.7.0",
-    "material-ui": "^0.15.0-alpha.2",
     "meteor-node-stubs": "~0.2.0",
     "querystring": "^0.2.0",
-    "react": "^0.14.8",
-    "react-addons-pure-render-mixin": "^0.14.8",
-    "react-dom": "^0.14.8",
+    "react": "^15.1.0",
+    "react-addons-pure-render-mixin": "^15.1.0",
+    "react-dom": "^15.1.0",
     "react-gmaps": "^1.4.4",
     "react-komposer": "^1.7.1",
     "react-mounter": "^1.1.0",
-    "react-tap-event-plugin": "^0.2.2"
+    "react-tap-event-plugin": "^0.2.2",
+    "material-ui": "^0.15.0-alpha.2"
   },
   "devDependencies": {
     "eslint": "^2.6.0",
