@@ -16,16 +16,16 @@ class AppNavBar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      open: false,
-    };
+    this.state = { open: false };
+
     this.handleToggle = this.handleToggle.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.goToDashboard = this.goToDashboard.bind(this);
+    this.goToTest = this.goToTest.bind(this);
   }
 
   handleToggle() {
-    // console.log('handling toggle');
     this.setState({ open: !this.state.open });
   }
 
@@ -38,9 +38,19 @@ class AppNavBar extends React.Component {
     Meteor.logout();
   }
 
+  goToDashboard() {
+    FlowRouter.go('/dashboard');
+    this.handleClose();
+  }
+
+  goToTest() {
+    FlowRouter.go('/test');
+    this.handleClose();
+  }
+
   render() {
     return (
-      <div>
+      <div className="AppBar__wrapper">
         <AppBar
           title="Logistix"
           style={{ textAlign: 'center' }}
@@ -52,6 +62,20 @@ class AppNavBar extends React.Component {
           open={this.state.open}
           onRequestChange={open => this.setState({ open })}
         >
+          <MenuItem
+            onTouchTap={this.goToDashboard}
+            style={style.menuItem}
+            disabled={false}
+          >
+            Dashboard
+          </MenuItem>
+          <MenuItem
+            onTouchTap={this.goToTest}
+            style={style.menuItem}
+            disabled={false}
+          >
+            Test Page
+          </MenuItem>
           <MenuItem
             onTouchTap={this.handleClose}
             style={style.menuItem}
