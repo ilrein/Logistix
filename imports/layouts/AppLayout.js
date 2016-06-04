@@ -6,7 +6,7 @@ import AppNavBar from '../ui/AppNavBar';
 
 const AppLayout = ({ content }) => (
   <MuiThemeProvider muiTheme={getMuiTheme()}>
-    <div>
+    <div className="AppLayout">
       <AppNavBar />
       <main>
         {content}

@@ -111,7 +111,7 @@ export default class Map extends React.Component {
         </Gmaps>
       );
     } else { // eslint-disable-line
-      return <div>loading</div>;
+      return <LoadingSpinner />;
     }
   }
 }

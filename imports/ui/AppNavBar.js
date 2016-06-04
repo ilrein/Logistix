@@ -4,6 +4,8 @@ import AppBar from 'material-ui/AppBar/AppBar';
 import Drawer from 'material-ui/Drawer/Drawer';
 import MenuItem from 'material-ui/MenuItem/MenuItem';
 
+import UserNameContainer from '../containers/UserNameContainer';
+
 const style = {
   menuItem: {
     // color: 'blue',
@@ -14,14 +16,16 @@ class AppNavBar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { open: false };
+    this.state = {
+      open: false,
+    };
     this.handleToggle = this.handleToggle.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
 
   handleToggle() {
-    console.log('handling toggle');
+    // console.log('handling toggle');
     this.setState({ open: !this.state.open });
   }
 
@@ -53,7 +57,7 @@ class AppNavBar extends React.Component {
             style={style.menuItem}
             disabled
           >
-            Logistix
+            <UserNameContainer />
           </MenuItem>
           <MenuItem
             onTouchTap={this.handleLogout}

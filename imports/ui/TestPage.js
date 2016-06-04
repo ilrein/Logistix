@@ -3,7 +3,7 @@ import React from 'react';
 import LoadingSpinner from './LoadingSpinner';
 
 const TestPage = () => (
-  <div>
+  <div className="TestPage">
     <LoadingSpinner />
   </div>
 );
