@@ -18,6 +18,7 @@ export default class Modal extends Component {
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.selectStartDate = this.selectStartDate.bind(this);
+    this.handleAccept = this.handleAccept.bind(this);
     // this.props.issueContract();
   }
 
@@ -26,7 +27,12 @@ export default class Modal extends Component {
   }
 
   handleClose() {
-    console.log('closing the modal', this.refs.date.state);
+    console.log('closing the modal');
+    this.setState({ open: false });
+  }
+
+  handleAccept() {
+    console.log('Accepted the modal', this.refs.date.state);
     this.setState({ open: false });
   }
 
@@ -40,7 +46,7 @@ export default class Modal extends Component {
         label="Ok"
         primary
         keyboardFocused
-        onTouchTap={this.handleClose}
+        onTouchTap={this.handleAccept}
       />,
     ];
 
