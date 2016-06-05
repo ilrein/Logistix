@@ -1,10 +1,9 @@
 import React from 'react';
-import Card from 'material-ui/Card/Card';
+import Card from 'material-ui/Card';
 import CardHeader from 'material-ui/Card/CardHeader';
 
 import Map from './Map';
-import UsersCountContainer from '../containers/UsersCountContainer';
-import ContractsCountContainer from '../containers/ContractsCountContainer';
+import DashboardHeader from './DashboardHeader';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -14,15 +13,12 @@ class Dashboard extends React.Component {
 
   render() {
     return (
-      <div>
-        <Card>
+      <div className="card-wrapper">
+        <Card className="card">
           <CardHeader
-            title="Total Users Online"
-            children={<UsersCountContainer />}
-          />
-          <CardHeader
-            title="Total Jobs"
-            children={<ContractsCountContainer />}
+            className="card-header"
+            children={<DashboardHeader />}
+            title="Dashboard"
           />
           <Map />
         </Card>
