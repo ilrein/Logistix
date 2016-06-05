@@ -3,8 +3,8 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
-
-import { FloatingInput } from './Inputs';
+import TimePicker from 'material-ui/TimePicker';
+import TextField from 'material-ui/TextField';
 
 /**
  * Dialogs can be nested. This opens a Date Picker from within a Dialog.
@@ -54,14 +54,23 @@ export default class Modal extends Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-          Choose the start of the contract.
-          <br />
+          <p className="modal-subtitle">
+            Choose the start of the contract.
+          </p>
           <DatePicker
-            hintText="Date Picker"
+            hintText="Select the date of the pickup"
             onChange={this.selectStartDate}
             ref="date"
           />
-          <FloatingInput />
+          <TimePicker
+            hintText="Select the time of the pickup"
+          />
+          <TextField
+            hintText="Pickup Address"
+          />
+          <TextField
+            hintText="Destination"
+          />
         </Dialog>
       </div>
     );
