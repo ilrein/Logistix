@@ -53,7 +53,6 @@ class AppNavBar extends React.Component {
       <div className="AppBar__wrapper">
         <AppBar
           title="Logistix"
-          style={{ textAlign: 'center' }}
           onLeftIconButtonTouchTap={this.handleToggle}
         />
         <Drawer
