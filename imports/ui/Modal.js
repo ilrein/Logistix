@@ -46,7 +46,6 @@ export default class Modal extends Component {
   }
 
   handleClose() {
-    console.log('closing the modal');
     this.setState({ open: false });
   }
 
@@ -54,12 +53,13 @@ export default class Modal extends Component {
     const data = {
       date: this.refs.date.state.date,
       time: this.refs.time.state.time,
-      pickup: this.state.pickup,
-      dropoff: this.state.dropoff,
+      pickup: this.state.pickup === null ?
+        this.refs.pickup.props.defaultValue : this.state.pickup,
+      dropoff: this.state.dropoff === null ?
+        this.refs.dropoff.props.defaultValue : this.state.dropoff,
     };
-
-    console.log('Accepted the modal', data);
     this.setState({ open: false });
+    // console.log('issueing contract with data', data);
     this.props.issueContract(data);
   }
 
@@ -83,7 +83,10 @@ export default class Modal extends Component {
 
     return (
       <div>
-        <RaisedButton label="Issue Contract" onTouchTap={this.handleOpen} />
+        <RaisedButton
+          label="Issue Contract"
+          onTouchTap={this.handleOpen}
+        />
         <Dialog
           title="Issue Contract"
           actions={actions}
@@ -105,11 +108,13 @@ export default class Modal extends Component {
             ref="time"
           />
           <TextField
+            defaultValue="211 Yonge St, ON"
             hintText="Pickup Address"
             onChange={this.setLocationPickup}
             ref="pickup"
           />
           <TextField
+            defaultValue="26 Wallenberg Drive, ON"
             hintText="Destination"
             onChange={this.setLocationDropoff}
             ref="dropoff"

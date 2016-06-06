@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Gmaps, Marker } from 'react-gmaps';
 
 import LoadingSpinner from './LoadingSpinner';
@@ -10,6 +10,7 @@ import LoadingSpinner from './LoadingSpinner';
 export default class Map extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props.contracts);
 
     this.state = {
       credentials: {
@@ -107,7 +108,9 @@ export default class Map extends React.Component {
             lng={this.state.coordinates.lng}
             draggable
             onDragStart={this.onDragStart}
+            ref="selfMarker"
           />
+          {this.props.contracts()}
         </Gmaps>
       );
     } else { // eslint-disable-line
@@ -115,3 +118,7 @@ export default class Map extends React.Component {
     }
   }
 }
+
+Map.propTypes = {
+  contracts: PropTypes.func,
+};
