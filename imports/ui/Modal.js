@@ -14,12 +14,34 @@ export default class Modal extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { open: false };
+    this.state = {
+      open: false,
+      pickup: null,
+      dropoff: null,
+    };
+
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.selectStartDate = this.selectStartDate.bind(this);
+    this.selectStartTime = this.selectStartTime.bind(this);
+    this.setLocationDropoff = this.setLocationDropoff.bind(this);
+    this.setLocationPickup = this.setLocationPickup.bind(this);
     this.handleAccept = this.handleAccept.bind(this);
     // this.props.issueContract();
+  }
+
+  setLocationDropoff(e) {
+    // console.log('Location dropoff has been set');
+    this.setState({
+      dropoff: e.target.value,
+    });
+  }
+
+  setLocationPickup(e) {
+    // console.log('Location pickup has been set');
+    this.setState({
+      pickup: e.target.value,
+    });
   }
 
   handleOpen() {
@@ -32,12 +54,23 @@ export default class Modal extends Component {
   }
 
   handleAccept() {
-    console.log('Accepted the modal', this.refs.date.state);
+    const data = {
+      date: this.refs.date.state.date,
+      time: this.refs.time.state.time,
+      pickup: this.state.pickup,
+      dropoff: this.state.dropoff,
+    };
+
+    console.log('Accepted the modal', data);
     this.setState({ open: false });
   }
 
   selectStartDate() {
-    console.log('start date has been selected');
+    console.log('start DATE has been selected');
+  }
+
+  selectStartTime() {
+    console.log('start TIME has been selected');
   }
 
   render() {
@@ -70,12 +103,18 @@ export default class Modal extends Component {
           />
           <TimePicker
             hintText="Select the time of the pickup"
+            onChange={this.selectStartTime}
+            ref="time"
           />
           <TextField
             hintText="Pickup Address"
+            onChange={this.setLocationPickup}
+            ref="pickup"
           />
           <TextField
             hintText="Destination"
+            onChange={this.setLocationDropoff}
+            ref="dropoff"
           />
         </Dialog>
       </div>
