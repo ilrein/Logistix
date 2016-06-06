@@ -27,18 +27,15 @@ export default class Modal extends Component {
     this.setLocationDropoff = this.setLocationDropoff.bind(this);
     this.setLocationPickup = this.setLocationPickup.bind(this);
     this.handleAccept = this.handleAccept.bind(this);
-    // this.props.issueContract();
   }
 
   setLocationDropoff(e) {
-    // console.log('Location dropoff has been set');
     this.setState({
       dropoff: e.target.value,
     });
   }
 
   setLocationPickup(e) {
-    // console.log('Location pickup has been set');
     this.setState({
       pickup: e.target.value,
     });
@@ -63,6 +60,7 @@ export default class Modal extends Component {
 
     console.log('Accepted the modal', data);
     this.setState({ open: false });
+    this.props.issueContract(data);
   }
 
   selectStartDate() {

@@ -13,12 +13,12 @@ export default class DashboardHeader extends Component {
     this.issueContract = this.issueContract.bind(this);
   }
 
-  issueContract() {
+  issueContract(contract) {
     // DirectionsRequest Object
     // {
-    //   origin: LatLng | String | google.maps.Place,
-    //   destination: LatLng | String | google.maps.Place,
-    //   travelMode: TravelMode,
+    //   origin: LatLng | String | google.maps.Place, REQUIRED
+    //   destination: LatLng | String | google.maps.Place, REQUIRED
+    //   travelMode: TravelMode, REQUIRED
     //   transitOptions: TransitOptions,
     //   drivingOptions: DrivingOptions,
     //   unitSystem: UnitSystem,
@@ -32,8 +32,21 @@ export default class DashboardHeader extends Component {
     //
     // currently have global access to google.maps
     // let's open a modal with inputs for the above
+    const directionRequest = {
+      origin: contract.pickup,
+      destination: contract.dropoff,
+      travelMode: google.maps.TravelMode.DRIVING,
+    };
 
-    console.log(google.maps);
+    const directionsService = new google.maps.DirectionsService();
+    // const directionsDisplay = new google.maps.DirectionsRenderer();
+
+    directionsService.route(directionRequest, (result, status) => {
+      if (status === google.maps.DirectionsStatus.OK) {
+        console.log('status ok', result);
+        // directionsDisplay.setDirections(result);
+      }
+    });
   }
 
   render() {
